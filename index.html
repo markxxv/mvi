@@ -3,205 +3,252 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mark Vi — digital product designer & developer</title>
-  <meta name="description" content="Проектирование и разработка цифровых продуктов, e-commerce, CRM и AI-интеграций.">
+  <title>Mark Vi</title>
+  <meta name="description" content="Проектирую и разрабатываю цифровые продукты — от сильного интерфейса до сложной бизнес-логики.">
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <script src="https://unpkg.com/lucide@latest"></script>
+
   <style type="text/tailwindcss">
     @theme {
-      --font-sans: "Helvetica Neue", "Inter", Arial, sans-serif;
-      --color-paper: #f7f3f0;
+      --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+      --color-paper: #f3efec;
       --color-ink: #111111;
-      --color-accent: #ff5a13;
     }
 
-    html, body { min-height: 100%; background: var(--color-paper); }
-    body { overflow: hidden; }
-    .hero-name {
-      font-size: clamp(7.5rem, 21.2vw, 25rem);
-      line-height: .68;
-      letter-spacing: -.085em;
-      font-weight: 650;
+    html, body {
+      min-height: 100%;
+      background: var(--color-paper);
+    }
+
+    body {
+      color: var(--color-ink);
+      overflow-x: hidden;
+    }
+
+    .hero-title {
+      font-size: clamp(6.2rem, 20vw, 22rem);
+      line-height: .76;
+      letter-spacing: -.095em;
+      font-weight: 700;
       white-space: nowrap;
     }
+
     .hero-copy {
-      font-size: clamp(1.55rem, 2.05vw, 2.45rem);
-      line-height: 1.08;
-      letter-spacing: -.035em;
+      font-size: clamp(1.75rem, 2.3vw, 3.05rem);
+      line-height: 1.06;
+      letter-spacing: -.04em;
+      font-weight: 600;
     }
-    .float-card {
-      background: rgba(255,255,255,.92);
-      box-shadow: 0 20px 55px rgba(42, 28, 18, .10);
+
+    .soft-card {
+      background: rgba(255,255,255,.88);
+      box-shadow:
+        0 10px 30px rgba(17,17,17,.06),
+        0 1px 0 rgba(255,255,255,.65) inset;
       backdrop-filter: blur(10px);
     }
-    .orange-form {
-      background:
-        radial-gradient(circle at 35% 20%, rgba(255,238,151,.95) 0 8%, transparent 9%),
-        radial-gradient(circle at 65% 54%, rgba(255,190,61,.88) 0 16%, transparent 17%),
-        linear-gradient(145deg, #ffb237 0%, #ff7a18 34%, #ff5a13 68%, #f04408 100%);
-      box-shadow:
-        inset 32px 28px 62px rgba(255,255,255,.35),
-        inset -36px -44px 72px rgba(146,42,0,.16),
-        0 34px 80px rgba(218,75,12,.12);
-      border-radius: 48% 52% 42% 58% / 28% 32% 68% 72%;
-      transform: rotate(7deg);
-    }
-    .orange-form::before,
-    .orange-form::after {
-      content: "";
-      position: absolute;
-      background: inherit;
-      box-shadow: inherit;
-    }
-    .orange-form::before {
-      width: 38%;
-      height: 58%;
-      right: -13%;
-      top: 38%;
-      border-radius: 68% 32% 55% 45% / 44% 60% 40% 56%;
-      transform: rotate(15deg);
-    }
-    .orange-form::after {
-      width: 30%;
-      height: 46%;
-      left: 8%;
-      top: -14%;
-      border-radius: 58% 42% 70% 30% / 30% 55% 45% 70%;
-      transform: rotate(15deg);
-    }
-    .orange-shine {
-      position: absolute;
-      inset: 7% 22% auto 17%;
-      height: 46%;
+
+    .tag-pill {
+      background: rgba(255,255,255,.98);
+      box-shadow: 0 6px 18px rgba(17,17,17,.05);
       border-radius: 999px;
-      border-left: 12px solid rgba(255,255,255,.5);
-      transform: rotate(20deg);
-      opacity: .75;
-      filter: blur(.2px);
-    }
-    .tag {
-      border: 1px solid rgba(17,17,17,.72);
-      border-radius: 999px;
-      padding: .52rem .9rem;
-      font-size: clamp(.78rem, .86vw, 1rem);
+      padding: .72rem 1.05rem;
+      font-size: .98rem;
       line-height: 1;
       white-space: nowrap;
     }
+
+    .flag {
+      width: 1.15rem;
+      height: 1.15rem;
+      object-fit: cover;
+      border-radius: 999px;
+      box-shadow: 0 1px 3px rgba(17,17,17,.08);
+      flex: none;
+    }
+
     @media (max-width: 900px) {
-      body { overflow-y: auto; }
-      .hero-name { font-size: clamp(6rem, 28vw, 12rem); }
-      .hero-copy { font-size: clamp(1.55rem, 6.2vw, 2.3rem); }
-      .tag { padding: .48rem .76rem; font-size: .78rem; }
+      .hero-title {
+        font-size: clamp(5.2rem, 25vw, 10rem);
+        white-space: normal;
+      }
+
+      .hero-copy {
+        font-size: clamp(1.55rem, 6.2vw, 2.25rem);
+      }
+
+      .tag-pill {
+        font-size: .84rem;
+        padding: .68rem .95rem;
+      }
     }
   </style>
 </head>
-<body class="text-ink antialiased selection:bg-accent selection:text-white">
-  <main class="relative min-h-[100svh] overflow-hidden px-5 pb-5 pt-5 md:px-8 md:pb-8 md:pt-8 xl:px-12 xl:pt-10">
+<body class="antialiased selection:bg-black selection:text-white">
+  <main class="relative min-h-screen overflow-hidden px-5 pt-5 pb-5 md:px-8 md:pt-8 md:pb-8 xl:px-12 xl:pt-10">
     <header class="relative z-50 flex items-center justify-between">
-      <a href="#" class="flex items-center gap-3">
-        <span class="flex h-12 w-12 items-center justify-center rounded-full bg-ink text-white md:h-14 md:w-14">
-          <span class="text-[10px] font-semibold tracking-[-.06em] md:text-xs">m/vi</span>
+      <a href="#" class="flex items-center gap-4">
+        <span class="flex h-12 w-12 items-center justify-center rounded-full bg-black text-white md:h-14 md:w-14">
+          <span class="text-[11px] font-semibold tracking-[-0.06em] md:text-xs">m/vi</span>
         </span>
-        <span class="text-xl font-semibold leading-[.88] tracking-[-.04em] md:text-2xl">mark<br>vi</span>
+
+        <span class="text-xl font-semibold leading-[.88] tracking-[-.04em] md:text-2xl">
+          mark<br>vi
+        </span>
       </a>
 
       <div class="flex items-center gap-3 md:gap-4">
-        <button aria-label="Переключить тему" class="hidden h-12 w-12 items-center justify-center rounded-full md:flex">
+        <button aria-label="Theme" class="hidden h-12 w-12 items-center justify-center rounded-full md:flex">
           <i data-lucide="moon-star" class="h-6 w-6" stroke-width="1.9"></i>
         </button>
-        <a href="mailto:markvivas2@gmail.com" class="hidden h-14 items-center gap-4 rounded-full border-2 border-ink px-7 text-lg font-semibold tracking-[-.02em] md:flex">
+
+        <a
+          href="mailto:markvivas2@gmail.com"
+          class="hidden h-14 items-center gap-4 rounded-full border-2 border-black px-7 text-lg font-semibold tracking-[-.02em] md:flex"
+        >
           Say Hello
-          <i data-lucide="arrow-up-right" class="h-5 w-5" stroke-width="2"></i>
+          <i data-lucide="arrow-up-right" class="h-5 w-5" stroke-width="2.1"></i>
         </a>
-        <button aria-label="Открыть меню" class="flex h-12 w-12 items-center justify-center rounded-full bg-ink text-white md:h-14 md:w-14">
+
+        <button aria-label="Menu" class="flex h-12 w-12 items-center justify-center rounded-full bg-black text-white md:h-14 md:w-14">
           <i data-lucide="menu" class="h-6 w-6" stroke-width="2.2"></i>
         </button>
       </div>
     </header>
 
-    <section class="relative mx-auto min-h-[calc(100svh-7rem)] max-w-[1900px]">
-      <div class="absolute left-0 top-[31%] z-20 max-w-[540px] md:left-[.1%] md:top-[32%] xl:max-w-[610px]">
-        <h1 class="hero-copy font-semibold">
+    <section class="relative mx-auto min-h-[calc(100vh-4rem)] max-w-[1900px]">
+      <!-- left copy -->
+      <div class="absolute left-0 top-[29%] z-20 max-w-[620px] md:top-[31%] xl:max-w-[690px]">
+        <h1 class="hero-copy">
           Проектирую и разрабатываю<br class="hidden sm:block">
           цифровые продукты — от сильного<br class="hidden sm:block">
           интерфейса до сложной бизнес-логики.
         </h1>
-        <p class="mt-6 text-sm text-zinc-500 md:text-base">Barcelona · Sweden · Remote</p>
-      </div>
 
-      <div class="absolute left-[58%] top-[4%] z-0 hidden h-[70%] w-[27%] min-w-[390px] md:block">
-        <div class="orange-form relative h-full w-full">
-          <span class="orange-shine"></span>
+        <div class="mt-7 flex flex-wrap items-center gap-3 text-sm text-zinc-600 md:text-base">
+          <div class="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-2 shadow-[0_6px_18px_rgba(17,17,17,.04)]">
+            <img src="img/es.png" alt="Spain" class="flag">
+            <span>Spain</span>
+          </div>
+
+          <span class="text-zinc-400">/</span>
+
+          <div class="inline-flex items-center gap-2 rounded-full bg-white/70 px-3 py-2 shadow-[0_6px_18px_rgba(17,17,17,.04)]">
+            <img src="img/se.png" alt="Sweden" class="flag">
+            <span>Sweden</span>
+          </div>
         </div>
       </div>
 
-      <img
-        src="img/avatar-wave.webp"
-        alt="Виртуальный аватар Mark Vi"
-        class="absolute bottom-[18%] right-[7%] z-20 hidden w-[25%] min-w-[330px] max-w-[500px] drop-shadow-[0_26px_28px_rgba(58,29,12,.12)] md:block"
-      >
-
-      <div class="float-card absolute left-[47%] top-[26%] z-30 hidden items-center gap-5 rounded-2xl px-6 py-5 lg:flex">
-        <strong class="text-5xl font-semibold tracking-[-.06em]">21+</strong>
-        <span class="max-w-28 text-base leading-tight text-zinc-600">лет опыта<br>с 2005 года</span>
+      <!-- right composition -->
+      <div class="absolute right-[6%] top-[4%] z-10 hidden md:block">
+        <img
+          src="img/fire.webp"
+          alt=""
+          class="w-[30vw] min-w-[360px] max-w-[620px] select-none"
+          draggable="false"
+        >
       </div>
 
-      <div class="float-card absolute right-[1%] top-[38%] z-30 hidden items-center gap-3 rounded-2xl px-6 py-5 xl:flex">
-        <span class="h-2.5 w-2.5 rounded-full bg-lime-500"></span>
-        <span class="text-base font-medium">Открыт к проектам</span>
+      <div class="absolute right-[8%] top-[21%] z-20 hidden md:block">
+        <img
+          src="img/sticker.webp"
+          alt="Mark Vi avatar"
+          class="w-[22vw] min-w-[280px] max-w-[420px] select-none"
+          draggable="false"
+        >
       </div>
 
-      <a href="https://zaltsman.media" class="float-card absolute bottom-[35%] left-[45%] z-30 hidden rounded-2xl px-6 py-5 lg:block">
-        <span class="block text-sm text-zinc-500">CTO</span>
-        <span class="mt-1 flex items-center gap-2 text-lg font-semibold">
-          Zaltsman Media
-          <i data-lucide="arrow-up-right" class="h-4 w-4" stroke-width="2"></i>
+      <!-- floating cards -->
+      <div class="soft-card absolute left-[49%] top-[24%] z-30 hidden items-center gap-5 rounded-[1.4rem] px-6 py-5 lg:flex">
+        <strong class="text-5xl font-semibold tracking-[-.07em]">21+</strong>
+        <span class="max-w-32 text-base leading-tight text-zinc-600">
+          Years of<br>experience
         </span>
-      </a>
-
-      <div class="absolute bottom-[8.7rem] left-0 right-0 z-10 md:bottom-[9.7rem]">
-        <div class="hero-name">mark vi</div>
       </div>
 
-      <div class="absolute inset-x-0 bottom-0 z-40 flex flex-wrap gap-2 pb-1 md:max-w-[72%]">
-        <span class="tag">Web development</span>
-        <span class="tag">Product design</span>
-        <span class="tag">AI / ML</span>
-        <span class="tag">E-commerce</span>
-        <span class="tag">Laravel</span>
-        <span class="tag">CRM / ERP</span>
-        <span class="tag">UX strategy</span>
+      <div class="soft-card absolute right-[1.5%] top-[40%] z-30 hidden items-center gap-3 rounded-[1.4rem] px-6 py-5 xl:flex">
+        <span class="h-2.5 w-2.5 rounded-full bg-lime-500"></span>
+        <span class="text-base font-medium">Available for selected projects</span>
+      </div>
+
+      <div class="soft-card absolute left-[44%] bottom-[36%] z-30 hidden rounded-[1.4rem] px-6 py-5 lg:block">
+        <span class="block text-sm text-zinc-500">Since</span>
+        <span class="mt-1 block text-lg font-semibold">2005</span>
+      </div>
+
+      <!-- huge name -->
+      <div class="absolute inset-x-0 bottom-[8.7rem] z-20 md:bottom-[8.2rem]">
+        <div class="hero-title">mark vi</div>
+      </div>
+
+      <!-- tags -->
+      <div class="absolute inset-x-0 bottom-0 z-40 flex max-w-[78%] flex-wrap gap-2 pb-1 md:max-w-[74%]">
+        <span class="tag-pill">Web development</span>
+        <span class="tag-pill">Product design</span>
+        <span class="tag-pill">AI / ML</span>
+        <span class="tag-pill">E-commerce</span>
+        <span class="tag-pill">Laravel</span>
+        <span class="tag-pill">CRM / ERP</span>
+        <span class="tag-pill">UX strategy</span>
       </div>
 
       <div class="absolute bottom-1 right-0 z-40 hidden items-center gap-3 text-base font-semibold lg:flex">
-        Header concept
+        Scroll for more
         <i data-lucide="arrow-down" class="h-5 w-5" stroke-width="2"></i>
       </div>
 
-      <div class="relative z-10 pt-36 md:hidden">
-        <div class="relative mx-auto mt-24 h-[380px] max-w-[390px]">
-          <div class="orange-form absolute right-[-14%] top-0 h-[330px] w-[280px]"></div>
-          <img src="img/avatar-wave.webp" alt="" class="absolute bottom-0 right-[-2%] z-10 w-[285px]">
-          <div class="float-card absolute left-0 top-16 z-20 rounded-xl px-4 py-3">
-            <strong class="block text-3xl leading-none tracking-[-.05em]">21+</strong>
-            <span class="mt-1 block text-xs text-zinc-500">лет опыта · с 2005</span>
+      <!-- mobile -->
+      <div class="relative z-10 pt-28 md:hidden">
+        <div class="max-w-[400px]">
+          <h1 class="hero-copy">
+            Проектирую и разрабатываю цифровые продукты — от сильного интерфейса до сложной бизнес-логики.
+          </h1>
+
+          <div class="mt-6 flex flex-wrap items-center gap-3 text-sm text-zinc-600">
+            <div class="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-2 shadow-[0_6px_18px_rgba(17,17,17,.04)]">
+              <img src="img/es.png" alt="Spain" class="flag">
+              <span>Spain</span>
+            </div>
+
+            <span class="text-zinc-400">/</span>
+
+            <div class="inline-flex items-center gap-2 rounded-full bg-white/80 px-3 py-2 shadow-[0_6px_18px_rgba(17,17,17,.04)]">
+              <img src="img/se.png" alt="Sweden" class="flag">
+              <span>Sweden</span>
+            </div>
           </div>
         </div>
-        <div class="-mt-2">
-          <div class="hero-name">mark vi</div>
+
+        <div class="relative mx-auto mt-14 h-[370px] max-w-[390px]">
+          <img src="img/fire.webp" alt="" class="absolute right-[-2%] top-0 w-[270px]">
+          <img src="img/sticker.webp" alt="Mark Vi avatar" class="absolute bottom-0 right-[2%] z-10 w-[250px]">
+
+          <div class="soft-card absolute left-0 top-14 z-20 rounded-xl px-4 py-3">
+            <strong class="block text-3xl leading-none tracking-[-.05em]">21+</strong>
+            <span class="mt-1 block text-xs text-zinc-500">Years of experience</span>
+          </div>
         </div>
+
+        <div class="-mt-4">
+          <div class="hero-title">mark vi</div>
+        </div>
+
         <div class="mt-6 flex flex-wrap gap-2 pb-8">
-          <span class="tag">Web development</span>
-          <span class="tag">Product design</span>
-          <span class="tag">AI / ML</span>
-          <span class="tag">E-commerce</span>
-          <span class="tag">Laravel</span>
-          <span class="tag">CRM / ERP</span>
+          <span class="tag-pill">Web development</span>
+          <span class="tag-pill">Product design</span>
+          <span class="tag-pill">AI / ML</span>
+          <span class="tag-pill">E-commerce</span>
+          <span class="tag-pill">Laravel</span>
+          <span class="tag-pill">CRM / ERP</span>
+          <span class="tag-pill">UX strategy</span>
         </div>
       </div>
     </section>
   </main>
 
-  <script>lucide.createIcons();</script>
+  <script>
+    lucide.createIcons();
+  </script>
 </body>
 </html>
