@@ -1,278 +1,207 @@
 <!doctype html>
-<html lang="ru" class="scroll-smooth">
+<html lang="ru">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Mark Vi — web, product & AI</title>
-  <meta name="description" content="Разработка цифровых продуктов, веб-сайтов, e-commerce, CRM и AI-интеграций в Испании и Швеции.">
+  <title>Mark Vi — digital product designer & developer</title>
+  <meta name="description" content="Проектирование и разработка цифровых продуктов, e-commerce, CRM и AI-интеграций.">
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style type="text/tailwindcss">
     @theme {
-      --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+      --font-sans: "Helvetica Neue", "Inter", Arial, sans-serif;
+      --color-paper: #f7f3f0;
       --color-ink: #111111;
-      --color-paper: #f4f1ed;
-      --color-orange: #ff5a1f;
+      --color-accent: #ff5a13;
     }
 
-    html { background: var(--color-paper); }
-    body { overflow-x: hidden; }
-    .display { font-size: clamp(5rem, 17vw, 15rem); line-height: .72; letter-spacing: -.075em; }
-    .hero-copy { font-size: clamp(1.35rem, 2vw, 2rem); line-height: 1.15; }
-    .section-title { font-size: clamp(3.25rem, 8vw, 8.5rem); line-height: .85; letter-spacing: -.065em; }
-    .orange-orbit {
-      background:
-        radial-gradient(circle at 34% 28%, #ffcb75 0 9%, transparent 10%),
-        radial-gradient(circle at 58% 55%, #ff7a24 0 27%, transparent 28%),
-        radial-gradient(circle at 42% 42%, #ff9c33 0 44%, #ff5a1f 68%, #e93f0b 100%);
-      filter: saturate(1.08);
-      box-shadow: inset -32px -44px 80px rgba(125,32,0,.22), inset 24px 24px 44px rgba(255,255,255,.38);
+    html, body { min-height: 100%; background: var(--color-paper); }
+    body { overflow: hidden; }
+    .hero-name {
+      font-size: clamp(7.5rem, 21.2vw, 25rem);
+      line-height: .68;
+      letter-spacing: -.085em;
+      font-weight: 650;
+      white-space: nowrap;
     }
-    .soft-card { box-shadow: 0 20px 60px rgba(25, 18, 12, .09); }
-    .marquee { animation: marquee 24s linear infinite; }
-    @keyframes marquee { to { transform: translateX(-50%); } }
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
-    .reveal.in { opacity: 1; transform: none; }
-    @media (prefers-reduced-motion: reduce) {
-      .marquee { animation: none; }
-      .reveal { opacity: 1; transform: none; transition: none; }
+    .hero-copy {
+      font-size: clamp(1.55rem, 2.05vw, 2.45rem);
+      line-height: 1.08;
+      letter-spacing: -.035em;
+    }
+    .float-card {
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 20px 55px rgba(42, 28, 18, .10);
+      backdrop-filter: blur(10px);
+    }
+    .orange-form {
+      background:
+        radial-gradient(circle at 35% 20%, rgba(255,238,151,.95) 0 8%, transparent 9%),
+        radial-gradient(circle at 65% 54%, rgba(255,190,61,.88) 0 16%, transparent 17%),
+        linear-gradient(145deg, #ffb237 0%, #ff7a18 34%, #ff5a13 68%, #f04408 100%);
+      box-shadow:
+        inset 32px 28px 62px rgba(255,255,255,.35),
+        inset -36px -44px 72px rgba(146,42,0,.16),
+        0 34px 80px rgba(218,75,12,.12);
+      border-radius: 48% 52% 42% 58% / 28% 32% 68% 72%;
+      transform: rotate(7deg);
+    }
+    .orange-form::before,
+    .orange-form::after {
+      content: "";
+      position: absolute;
+      background: inherit;
+      box-shadow: inherit;
+    }
+    .orange-form::before {
+      width: 38%;
+      height: 58%;
+      right: -13%;
+      top: 38%;
+      border-radius: 68% 32% 55% 45% / 44% 60% 40% 56%;
+      transform: rotate(15deg);
+    }
+    .orange-form::after {
+      width: 30%;
+      height: 46%;
+      left: 8%;
+      top: -14%;
+      border-radius: 58% 42% 70% 30% / 30% 55% 45% 70%;
+      transform: rotate(15deg);
+    }
+    .orange-shine {
+      position: absolute;
+      inset: 7% 22% auto 17%;
+      height: 46%;
+      border-radius: 999px;
+      border-left: 12px solid rgba(255,255,255,.5);
+      transform: rotate(20deg);
+      opacity: .75;
+      filter: blur(.2px);
+    }
+    .tag {
+      border: 1px solid rgba(17,17,17,.72);
+      border-radius: 999px;
+      padding: .52rem .9rem;
+      font-size: clamp(.78rem, .86vw, 1rem);
+      line-height: 1;
+      white-space: nowrap;
+    }
+    @media (max-width: 900px) {
+      body { overflow-y: auto; }
+      .hero-name { font-size: clamp(6rem, 28vw, 12rem); }
+      .hero-copy { font-size: clamp(1.55rem, 6.2vw, 2.3rem); }
+      .tag { padding: .48rem .76rem; font-size: .78rem; }
     }
   </style>
 </head>
-<body class="bg-paper text-ink antialiased selection:bg-orange selection:text-white">
-  <header class="fixed inset-x-0 top-0 z-50 px-4 pt-4 md:px-8 md:pt-6">
-    <div class="mx-auto flex max-w-[1800px] items-center justify-between">
-      <a href="#top" class="flex items-center gap-3 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white">
-        <span class="inline-block h-2 w-2 rounded-full bg-orange"></span>
-        Mark Vi
+<body class="text-ink antialiased selection:bg-accent selection:text-white">
+  <main class="relative min-h-[100svh] overflow-hidden px-5 pb-5 pt-5 md:px-8 md:pb-8 md:pt-8 xl:px-12 xl:pt-10">
+    <header class="relative z-50 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <span class="flex h-12 w-12 items-center justify-center rounded-full bg-ink text-white md:h-14 md:w-14">
+          <span class="text-[10px] font-semibold tracking-[-.06em] md:text-xs">m/vi</span>
+        </span>
+        <span class="text-xl font-semibold leading-[.88] tracking-[-.04em] md:text-2xl">mark<br>vi</span>
       </a>
-      <div class="flex items-center gap-2">
-        <a href="#contact" class="hidden rounded-full bg-white px-5 py-3 text-sm font-medium shadow-sm md:block">Обсудить проект ↗</a>
-        <button id="menuButton" aria-label="Открыть меню" class="flex h-11 w-11 items-center justify-center rounded-full bg-ink text-lg text-white">≡</button>
+
+      <div class="flex items-center gap-3 md:gap-4">
+        <button aria-label="Переключить тему" class="hidden h-12 w-12 items-center justify-center rounded-full md:flex">
+          <i data-lucide="moon-star" class="h-6 w-6" stroke-width="1.9"></i>
+        </button>
+        <a href="mailto:markvivas2@gmail.com" class="hidden h-14 items-center gap-4 rounded-full border-2 border-ink px-7 text-lg font-semibold tracking-[-.02em] md:flex">
+          Say Hello
+          <i data-lucide="arrow-up-right" class="h-5 w-5" stroke-width="2"></i>
+        </a>
+        <button aria-label="Открыть меню" class="flex h-12 w-12 items-center justify-center rounded-full bg-ink text-white md:h-14 md:w-14">
+          <i data-lucide="menu" class="h-6 w-6" stroke-width="2.2"></i>
+        </button>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <div id="menu" class="fixed inset-0 z-40 hidden bg-ink px-6 pt-28 text-white">
-    <nav class="mx-auto flex max-w-[1800px] flex-col gap-2">
-      <a class="section-title border-b border-zinc-700 py-4" href="#work">Работы</a>
-      <a class="section-title border-b border-zinc-700 py-4" href="#services">Сервисы</a>
-      <a class="section-title border-b border-zinc-700 py-4" href="#about">Обо мне</a>
-      <a class="section-title py-4 text-orange" href="#contact">Контакты</a>
-    </nav>
-  </div>
+    <section class="relative mx-auto min-h-[calc(100svh-7rem)] max-w-[1900px]">
+      <div class="absolute left-0 top-[31%] z-20 max-w-[540px] md:left-[.1%] md:top-[32%] xl:max-w-[610px]">
+        <h1 class="hero-copy font-semibold">
+          Проектирую и разрабатываю<br class="hidden sm:block">
+          цифровые продукты — от сильного<br class="hidden sm:block">
+          интерфейса до сложной бизнес-логики.
+        </h1>
+        <p class="mt-6 text-sm text-zinc-500 md:text-base">Barcelona · Sweden · Remote</p>
+      </div>
 
-  <main id="top">
-    <section class="relative min-h-screen overflow-hidden px-4 pb-6 pt-28 md:px-8 md:pb-8">
-      <div class="mx-auto flex min-h-[calc(100vh-8rem)] max-w-[1800px] flex-col justify-between">
-        <div class="grid gap-10 md:grid-cols-12">
-          <div class="md:col-span-5 md:pt-28">
-            <p class="hero-copy max-w-xl font-semibold">
-              Проектирую и разрабатываю цифровые продукты — от сильного интерфейса до сложной бизнес-логики.
-            </p>
-            <p class="mt-5 text-sm text-zinc-500">Barcelona · Sweden · Remote</p>
-          </div>
-          <div class="relative min-h-[330px] md:col-span-7 md:min-h-[480px]">
-            <div class="orange-orbit absolute right-[3%] top-[2%] h-[290px] w-[290px] rounded-[42%_58%_60%_40%/43%_38%_62%_57%] md:h-[440px] md:w-[440px]"></div>
-            <img src="img/avatar-wave.svg" alt="Виртуальный аватар Mark Vi" class="absolute bottom-0 right-[8%] z-10 w-[270px] drop-shadow-[0_28px_30px_rgba(40,20,0,.18)] md:w-[410px]">
-            <div class="soft-card absolute left-[2%] top-[20%] z-20 rounded-2xl bg-white px-5 py-4 md:left-[6%]">
-              <div class="text-4xl font-semibold tracking-[-0.05em]">15+</div>
-              <div class="mt-1 max-w-28 text-sm leading-tight text-zinc-500">лет в web и digital</div>
-            </div>
-            <div class="soft-card absolute right-0 top-[42%] z-20 rounded-2xl bg-white px-5 py-4 md:right-[2%]">
-              <div class="flex items-center gap-2 text-sm font-medium"><span class="h-2 w-2 rounded-full bg-lime-500"></span>Открыт к проектам</div>
-            </div>
-            <div class="soft-card absolute bottom-[8%] left-0 z-20 hidden rounded-2xl bg-white px-5 py-4 md:block">
-              <div class="text-sm text-zinc-500">CTO</div>
-              <div class="mt-1 font-semibold">Zaltsman Media ↗</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="relative z-20 -mt-10 md:-mt-28">
-          <h1 class="display font-semibold">mark vi</h1>
-          <div class="mt-7 flex flex-wrap gap-2 md:max-w-5xl">
-            <span class="rounded-full bg-white px-4 py-2 text-sm">Web development</span>
-            <span class="rounded-full bg-white px-4 py-2 text-sm">Product design</span>
-            <span class="rounded-full bg-white px-4 py-2 text-sm">AI / ML</span>
-            <span class="rounded-full bg-white px-4 py-2 text-sm">E-commerce</span>
-            <span class="rounded-full bg-white px-4 py-2 text-sm">Laravel</span>
-            <span class="rounded-full bg-white px-4 py-2 text-sm">CRM / ERP</span>
-            <span class="rounded-full bg-white px-4 py-2 text-sm">UX strategy</span>
-          </div>
+      <div class="absolute left-[58%] top-[4%] z-0 hidden h-[70%] w-[27%] min-w-[390px] md:block">
+        <div class="orange-form relative h-full w-full">
+          <span class="orange-shine"></span>
         </div>
       </div>
-    </section>
 
-    <section class="overflow-hidden bg-ink py-5 text-white">
-      <div class="marquee flex w-max whitespace-nowrap text-2xl font-medium md:text-4xl">
-        <span class="pr-12">web products · e-commerce · ai integration · crm · ux/ui · web products · e-commerce · ai integration · crm · ux/ui ·</span>
-        <span class="pr-12">web products · e-commerce · ai integration · crm · ux/ui · web products · e-commerce · ai integration · crm · ux/ui ·</span>
+      <img
+        src="img/avatar-wave.svg"
+        alt="Виртуальный аватар Mark Vi"
+        class="absolute bottom-[18%] right-[7%] z-20 hidden w-[25%] min-w-[330px] max-w-[500px] drop-shadow-[0_26px_28px_rgba(58,29,12,.12)] md:block"
+      >
+
+      <div class="float-card absolute left-[47%] top-[26%] z-30 hidden items-center gap-5 rounded-2xl px-6 py-5 lg:flex">
+        <strong class="text-5xl font-semibold tracking-[-.06em]">21+</strong>
+        <span class="max-w-28 text-base leading-tight text-zinc-600">лет опыта<br>с 2005 года</span>
       </div>
-    </section>
 
-    <section id="work" class="px-4 py-24 md:px-8 md:py-36">
-      <div class="mx-auto max-w-[1800px]">
-        <div class="reveal flex items-end justify-between gap-8">
-          <div>
-            <p class="mb-5 text-sm text-zinc-500">Selected work · 2024–2026</p>
-            <h2 class="section-title font-semibold">work</h2>
-          </div>
-          <a href="https://vivasart.com/works" class="hidden rounded-full bg-white px-5 py-3 text-sm font-medium md:block">Все проекты ↗</a>
-        </div>
-
-        <div class="mt-16 grid gap-4 md:grid-cols-12">
-          <article class="reveal group relative min-h-[520px] overflow-hidden rounded-[2rem] bg-[#d7e8f4] p-7 md:col-span-7 md:min-h-[720px] md:p-10">
-            <div class="flex items-start justify-between">
-              <div>
-                <p class="text-sm text-zinc-600">01 · Real estate</p>
-                <h3 class="mt-2 text-4xl font-semibold tracking-[-0.05em] md:text-6xl">Rusol Prime</h3>
-              </div>
-              <span class="rounded-full bg-white px-4 py-2 text-sm">2026</span>
-            </div>
-            <div class="absolute inset-x-8 bottom-8 h-[55%] rounded-[1.5rem] bg-white p-5 transition-transform duration-500 group-hover:-translate-y-2 md:inset-x-12 md:bottom-12">
-              <div class="flex h-full flex-col justify-between rounded-xl bg-[#f3f6f8] p-6">
-                <div class="flex justify-between text-xs text-zinc-500"><span>PROPERTY SEARCH</span><span>ES · EN · RU</span></div>
-                <div>
-                  <div class="mb-4 h-3 w-24 rounded-full bg-zinc-300"></div>
-                  <div class="mb-3 h-8 w-4/5 rounded-md bg-zinc-900"></div>
-                  <div class="h-8 w-2/3 rounded-md bg-zinc-900"></div>
-                </div>
-                <div class="grid grid-cols-3 gap-3">
-                  <div class="aspect-[4/3] rounded-xl bg-[#c7d7dc]"></div>
-                  <div class="aspect-[4/3] rounded-xl bg-[#d7d2c7]"></div>
-                  <div class="aspect-[4/3] rounded-xl bg-[#c9c4bd]"></div>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <div class="grid gap-4 md:col-span-5">
-            <article class="reveal min-h-[350px] rounded-[2rem] bg-orange p-7 text-white md:p-9">
-              <p class="text-sm text-orange-100">02 · Custom CRM</p>
-              <h3 class="mt-2 text-4xl font-semibold tracking-[-0.05em] md:text-5xl">CoachCRM</h3>
-              <div class="mt-14 rounded-2xl bg-white p-5 text-ink">
-                <div class="mb-6 flex gap-2"><span class="h-2 w-2 rounded-full bg-zinc-300"></span><span class="h-2 w-2 rounded-full bg-zinc-300"></span><span class="h-2 w-2 rounded-full bg-zinc-300"></span></div>
-                <div class="grid grid-cols-3 gap-3">
-                  <div class="col-span-2 h-24 rounded-xl bg-zinc-100"></div>
-                  <div class="h-24 rounded-xl bg-zinc-900"></div>
-                </div>
-              </div>
-            </article>
-            <article class="reveal min-h-[350px] rounded-[2rem] bg-[#ddd4ff] p-7 md:p-9">
-              <p class="text-sm text-zinc-600">03 · AI / automation</p>
-              <h3 class="mt-2 text-4xl font-semibold tracking-[-0.05em] md:text-5xl">Business AI</h3>
-              <p class="mt-8 max-w-md text-lg leading-snug">Автоматизация рутинных операций, классификация данных, перевод, поиск и агентские сценарии.</p>
-            </article>
-          </div>
-        </div>
+      <div class="float-card absolute right-[1%] top-[38%] z-30 hidden items-center gap-3 rounded-2xl px-6 py-5 xl:flex">
+        <span class="h-2.5 w-2.5 rounded-full bg-lime-500"></span>
+        <span class="text-base font-medium">Открыт к проектам</span>
       </div>
-    </section>
 
-    <section id="services" class="bg-white px-4 py-24 md:px-8 md:py-36">
-      <div class="mx-auto max-w-[1800px]">
-        <p class="reveal mb-5 text-sm text-zinc-500">What I do</p>
-        <h2 class="reveal section-title font-semibold">from idea<br>to system</h2>
+      <a href="https://zaltsman.media" class="float-card absolute bottom-[35%] left-[45%] z-30 hidden rounded-2xl px-6 py-5 lg:block">
+        <span class="block text-sm text-zinc-500">CTO</span>
+        <span class="mt-1 flex items-center gap-2 text-lg font-semibold">
+          Zaltsman Media
+          <i data-lucide="arrow-up-right" class="h-4 w-4" stroke-width="2"></i>
+        </span>
+      </a>
 
-        <div class="mt-20 divide-y divide-zinc-200">
-          <div class="reveal grid gap-5 py-8 md:grid-cols-12 md:py-10">
-            <span class="text-sm text-zinc-400 md:col-span-1">01</span>
-            <h3 class="text-3xl font-semibold tracking-[-0.04em] md:col-span-4 md:text-5xl">Web products</h3>
-            <p class="max-w-2xl text-lg leading-relaxed text-zinc-600 md:col-span-5">Сайты, личные кабинеты, порталы и веб-приложения с архитектурой под реальный бизнес-процесс.</p>
-            <span class="text-right text-2xl md:col-span-2">↗</span>
-          </div>
-          <div class="reveal grid gap-5 py-8 md:grid-cols-12 md:py-10">
-            <span class="text-sm text-zinc-400 md:col-span-1">02</span>
-            <h3 class="text-3xl font-semibold tracking-[-0.04em] md:col-span-4 md:text-5xl">E-commerce</h3>
-            <p class="max-w-2xl text-lg leading-relaxed text-zinc-600 md:col-span-5">Кастомные магазины, интеграции оплаты и доставки, каталоги, вариации, склад и автоматизация.</p>
-            <span class="text-right text-2xl md:col-span-2">↗</span>
-          </div>
-          <div class="reveal grid gap-5 py-8 md:grid-cols-12 md:py-10">
-            <span class="text-sm text-zinc-400 md:col-span-1">03</span>
-            <h3 class="text-3xl font-semibold tracking-[-0.04em] md:col-span-4 md:text-5xl">AI / ML</h3>
-            <p class="max-w-2xl text-lg leading-relaxed text-zinc-600 md:col-span-5">Интеграция ИИ туда, где он действительно сокращает ручную работу или улучшает продукт.</p>
-            <span class="text-right text-2xl md:col-span-2">↗</span>
-          </div>
-          <div class="reveal grid gap-5 py-8 md:grid-cols-12 md:py-10">
-            <span class="text-sm text-zinc-400 md:col-span-1">04</span>
-            <h3 class="text-3xl font-semibold tracking-[-0.04em] md:col-span-4 md:text-5xl">CRM / ERP</h3>
-            <p class="max-w-2xl text-lg leading-relaxed text-zinc-600 md:col-span-5">Внутренние системы, которые собирают продажи, клиентов, склад, документы и коммуникации в одном интерфейсе.</p>
-            <span class="text-right text-2xl md:col-span-2">↗</span>
-          </div>
-        </div>
+      <div class="absolute bottom-[8.7rem] left-0 right-0 z-10 md:bottom-[9.7rem]">
+        <div class="hero-name">mark vi</div>
       </div>
-    </section>
 
-    <section id="about" class="px-4 py-24 md:px-8 md:py-36">
-      <div class="mx-auto grid max-w-[1800px] gap-12 md:grid-cols-12">
-        <div class="reveal relative min-h-[420px] overflow-hidden rounded-[2rem] bg-ink md:col-span-5 md:min-h-[620px]">
-          <div class="orange-orbit absolute -right-20 -top-20 h-80 w-80 rounded-full opacity-90"></div>
-          <img src="img/avatar-call.svg" alt="Mark Vi avatar" class="absolute bottom-0 left-1/2 z-10 w-[88%] -translate-x-1/2">
-        </div>
-        <div class="reveal flex flex-col justify-between md:col-span-7 md:pl-10">
-          <div>
-            <p class="mb-5 text-sm text-zinc-500">About</p>
-            <h2 class="text-5xl font-semibold leading-[.95] tracking-[-0.06em] md:text-8xl">Делаю сложное понятным — и в интерфейсе, и в коде.</h2>
-          </div>
-          <div class="mt-14 grid gap-8 md:grid-cols-2">
-            <p class="text-lg leading-relaxed text-zinc-600">Более 15 лет работаю на стыке разработки, дизайна и digital. Живу между Испанией и Швецией, работаю с компаниями по всему миру.</p>
-            <p class="text-lg leading-relaxed text-zinc-600">В проектах могу закрыть весь путь: постановку задачи, UX, визуальную систему, frontend/backend и интеграции. Для больших задач подключаю команду Zaltsman Media.</p>
-          </div>
-        </div>
+      <div class="absolute inset-x-0 bottom-0 z-40 flex flex-wrap gap-2 pb-1 md:max-w-[72%]">
+        <span class="tag">Web development</span>
+        <span class="tag">Product design</span>
+        <span class="tag">AI / ML</span>
+        <span class="tag">E-commerce</span>
+        <span class="tag">Laravel</span>
+        <span class="tag">CRM / ERP</span>
+        <span class="tag">UX strategy</span>
       </div>
-    </section>
 
-    <section class="bg-[#dbff56] px-4 py-24 md:px-8 md:py-32">
-      <div class="mx-auto max-w-[1800px]">
-        <p class="reveal max-w-5xl text-4xl font-semibold leading-[1.02] tracking-[-0.05em] md:text-7xl">«Хороший интерфейс выглядит просто, потому что сложность уже была решена до него.»</p>
+      <div class="absolute bottom-1 right-0 z-40 hidden items-center gap-3 text-base font-semibold lg:flex">
+        Header concept
+        <i data-lucide="arrow-down" class="h-5 w-5" stroke-width="2"></i>
       </div>
-    </section>
 
-    <section id="contact" class="bg-orange px-4 py-24 text-white md:px-8 md:py-36">
-      <div class="mx-auto max-w-[1800px]">
-        <div class="reveal grid gap-12 md:grid-cols-12">
-          <div class="md:col-span-8">
-            <p class="mb-5 text-sm text-orange-100">Start a project</p>
-            <h2 class="section-title font-semibold">say hello</h2>
-          </div>
-          <div class="flex flex-col justify-end md:col-span-4">
-            <p class="mb-8 max-w-md text-xl leading-relaxed">Есть задача, которую хочется сделать сильнее визуально или технологически? Напиши пару строк.</p>
-            <a href="mailto:markvivas2@gmail.com" class="inline-flex w-fit rounded-full bg-ink px-6 py-4 text-base font-medium text-white">markvivas2@gmail.com ↗</a>
+      <div class="relative z-10 pt-36 md:hidden">
+        <div class="relative mx-auto mt-24 h-[380px] max-w-[390px]">
+          <div class="orange-form absolute right-[-14%] top-0 h-[330px] w-[280px]"></div>
+          <img src="img/avatar-wave.svg" alt="" class="absolute bottom-0 right-[-2%] z-10 w-[285px]">
+          <div class="float-card absolute left-0 top-16 z-20 rounded-xl px-4 py-3">
+            <strong class="block text-3xl leading-none tracking-[-.05em]">21+</strong>
+            <span class="mt-1 block text-xs text-zinc-500">лет опыта · с 2005</span>
           </div>
         </div>
-
-        <footer class="mt-28 flex flex-col gap-4 border-t border-orange-300 pt-6 text-sm md:flex-row md:items-center md:justify-between">
-          <span>© 2026 Mark Vi</span>
-          <div class="flex gap-5"><a href="#">RU</a><a href="#">EN</a><a href="#">ES</a></div>
-          <span>Barcelona · Sweden</span>
-        </footer>
+        <div class="-mt-2">
+          <div class="hero-name">mark vi</div>
+        </div>
+        <div class="mt-6 flex flex-wrap gap-2 pb-8">
+          <span class="tag">Web development</span>
+          <span class="tag">Product design</span>
+          <span class="tag">AI / ML</span>
+          <span class="tag">E-commerce</span>
+          <span class="tag">Laravel</span>
+          <span class="tag">CRM / ERP</span>
+        </div>
       </div>
     </section>
   </main>
 
-  <script>
-    const menuButton = document.getElementById('menuButton');
-    const menu = document.getElementById('menu');
-    const links = menu.querySelectorAll('a');
-
-    function toggleMenu(forceClose = false) {
-      const open = !menu.classList.contains('hidden');
-      const shouldOpen = forceClose ? false : !open;
-      menu.classList.toggle('hidden', !shouldOpen);
-      menuButton.textContent = shouldOpen ? '×' : '≡';
-      menuButton.setAttribute('aria-label', shouldOpen ? 'Закрыть меню' : 'Открыть меню');
-      document.body.classList.toggle('overflow-hidden', shouldOpen);
-    }
-
-    menuButton.addEventListener('click', () => toggleMenu());
-    links.forEach(link => link.addEventListener('click', () => toggleMenu(true)));
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('in');
-      });
-    }, { threshold: 0.12 });
-
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  </script>
+  <script>lucide.createIcons();</script>
 </body>
 </html>
