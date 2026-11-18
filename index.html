@@ -450,6 +450,46 @@
     @media (hover: hover) {
       .prj-more a:hover .prj-label { text-decoration: underline; text-underline-offset: .2em; }
     }
+
+    /* ───────── Секция 5: Skills ─────────
+       Не три одинаковые колонки, а ступени масштаба: крупно то, на чём пишу и рисую,
+       мельче арсенал и инструменты. Без clamp, фиксированные размеры. */
+    .skl { padding: 4rem 1.25rem; }
+    .skl-wrap { max-width: 1900px; margin-inline: auto; }
+    .skl-title {
+      font-size: 2.4rem;
+      line-height: 1;
+      font-weight: 700;
+      letter-spacing: -.05em;
+      margin: 0 0 2.5rem -.03em;
+      text-wrap: balance;
+    }
+    .skl-title span { color: #a09c99; }
+
+    .skl-list { margin: 0; padding: 0; border-bottom: 1px solid rgba(17,17,17,.14); }
+    .skl-row {
+      display: grid;
+      gap: .75rem;
+      padding: 1.5rem 0;
+      border-top: 1px solid rgba(17,17,17,.14);
+    }
+    .skl-label { font-size: 1rem; line-height: 1.2; color: #8e8a87; margin: 0; }
+    .skl-items { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .25rem 1.5rem; }
+
+    .skl-xl .skl-items { font-size: 1.7rem; line-height: 1.15; font-weight: 600; letter-spacing: -.04em; }
+    .skl-l  .skl-items { font-size: 1.3rem; line-height: 1.25; font-weight: 500; letter-spacing: -.025em; }
+    .skl-s  .skl-items { font-size: 1.05rem; line-height: 1.35; letter-spacing: -.01em; color: #6b6762; gap: .25rem 1.25rem; }
+
+    @media (min-width: 768px) {
+      .skl { padding: 8rem 2rem; }
+      .skl-title { margin-bottom: 4rem; }
+      .skl-row { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 2rem; padding: 2rem 0; align-items: baseline; }
+      .skl-label { grid-column: 1 / 4; font-size: 1.1rem; }
+      .skl-items { grid-column: 4 / -1; }
+      .skl-xl .skl-items { font-size: 2rem; gap: .35rem 2.25rem; }
+      .skl-l  .skl-items { font-size: 1.5rem; gap: .35rem 1.75rem; }
+      .skl-s  .skl-items { font-size: 1.15rem; }
+    }
   </style>
 </head>
 
@@ -705,6 +745,53 @@
 
       <a class="prj-all reveal" href="https://vivasart.com/folio">Весь архив <i data-lucide="arrow-right" class="h-5 w-5" stroke-width="2" aria-hidden="true"></i></a>
 
+    </div>
+  </section>
+
+<!-- Skills -->
+  <section id="skills" class="skl" aria-labelledby="skl-title">
+    <div class="skl-wrap">
+
+      <h2 id="skl-title" class="skl-title reveal">Чем пишу и рисую <span>— от Drupal до Vue</span></h2>
+
+      <div class="skl-list">
+
+        <div class="skl-row skl-xl reveal">
+          <h3 class="skl-label">Пишу</h3>
+          <ul class="skl-items">
+            <li>Laravel</li><li>PHP / ООП</li><li>JavaScript</li><li>Vue</li><li>Node.js</li>
+          </ul>
+        </div>
+
+        <div class="skl-row skl-xl reveal">
+          <h3 class="skl-label">Рисую</h3>
+          <ul class="skl-items">
+            <li>UI/UX</li><li>Веб-дизайн</li><li>Вёрстка</li>
+          </ul>
+        </div>
+
+        <div class="skl-row skl-l reveal">
+          <h3 class="skl-label">Ещё в арсенале</h3>
+          <ul class="skl-items">
+            <li>Yii 2</li><li>Drupal</li><li>Craft CMS</li><li>PostgreSQL</li><li>MySQL</li><li>Docker</li><li>Ubuntu Server</li>
+          </ul>
+        </div>
+
+        <div class="skl-row skl-s reveal">
+          <h3 class="skl-label">На рабочем столе</h3>
+          <ul class="skl-items">
+            <li>macOS</li><li>VS Code</li><li>WebStorm</li><li>Transmit</li><li>Vite</li><li>Webpack</li><li>Sketch</li><li>Photoshop</li>
+          </ul>
+        </div>
+
+        <div class="skl-row skl-s reveal">
+          <h3 class="skl-label">Делюсь опытом</h3>
+          <ul class="skl-items">
+            <li>Консультации</li><li>Семинары по онлайн-бизнесу</li>
+          </ul>
+        </div>
+
+      </div>
     </div>
   </section>
 
