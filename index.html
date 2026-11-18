@@ -340,8 +340,9 @@
     }
 
     /* ───────── Секция 4: Projects (витрина, не энциклопедия) ─────────
-       Четыре крупных проекта + тихий список остальных. Без clamp, фиксированные размеры. */
-    .prj { padding: 0 1.25rem 4rem; }
+       Тёмный блок как на старом сайте: два больших проекта в ряд с текстом поверх картинки,
+       ниже тихий список с квадратными миниатюрами. Без clamp, фиксированные размеры. */
+    .prj { background: #222; color: var(--color-paper); padding: 4rem 1.25rem; }
     .prj-wrap { max-width: 1900px; margin-inline: auto; }
 
     .prj-title {
@@ -352,46 +353,57 @@
       margin: 0 0 2.5rem -.03em;
       text-wrap: balance;
     }
-    .prj-title span { color: #a09c99; }
+    .prj-title span { color: #8e8a87; }
 
-    .prj-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.5rem 1.25rem; }
-    .prj-card { display: block; color: inherit; text-decoration: none; }
-    .prj-shot {
+    .prj-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1rem; }
+    .prj-card {
       position: relative;
+      display: block;
       aspect-ratio: 4 / 3;
       overflow: hidden;
       border-radius: 1.4rem;
-      background: #e4dfdb;           /* пока грузится картинка */
+      background: #333;
+      color: var(--color-paper);
+      text-decoration: none;
     }
-    .prj-shot img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; display: block; }
-    .prj-name-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1rem; }
+    .prj-card > img.prj-cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0; display: block; }
+    .prj-card::after {            /* затемнение под текст, чтобы читалось на любой картинке */
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.8) 0%, rgba(0,0,0,.38) 38%, rgba(0,0,0,0) 65%);
+      pointer-events: none;
+    }
+    .prj-info { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; padding: 1.25rem; }
+    .prj-name-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
     .prj-name {
       font-size: 1.4rem;
       line-height: 1.1;
       font-weight: 600;
       letter-spacing: -.04em;
     }
-    .prj-arrow { flex: none; width: 1.4rem; height: 1.4rem; opacity: .35; }
-    .prj-card p {
+    .prj-arrow { flex: none; width: 1.4rem; height: 1.4rem; opacity: .6; }
+    .prj-info p {
       margin-top: .4rem;
       font-size: 1.05rem;
-      line-height: 1.4;
+      line-height: 1.35;
       letter-spacing: -.01em;
-      color: #5f5b57;
-      max-width: 24em;
+      color: rgba(243,239,236,.85);
+      max-width: 28em;
     }
 
-    .prj-more { list-style: none; margin: 2.5rem 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); border-bottom: 1px solid rgba(17,17,17,.14); }
+    .prj-more { list-style: none; margin: 2.5rem 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); border-bottom: 1px solid rgba(243,239,236,.14); }
     .prj-more a {
-      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
-      padding: 1.1rem 0;
-      border-top: 1px solid rgba(17,17,17,.14);
-      font-size: 1.1rem;
+      display: flex; align-items: center; gap: .9rem;
+      padding: .75rem 0;
+      border-top: 1px solid rgba(243,239,236,.14);
+      font-size: 1.05rem;
       font-weight: 500;
       letter-spacing: -.02em;
       color: inherit;
       text-decoration: none;
     }
+    .prj-thumb { flex: none; width: 3rem; height: 3rem; aspect-ratio: 1 / 1; border-radius: .6rem; object-fit: cover; background: #333; display: block; }
+    .prj-label { flex: 1; min-width: 0; }
     .prj-more .prj-arrow { width: 1.2rem; height: 1.2rem; }
     .prj-all {
       display: inline-flex; align-items: center; gap: .6rem;
@@ -401,7 +413,7 @@
       letter-spacing: -.02em;
       color: inherit;
       text-decoration: none;
-      border-bottom: 2px solid var(--color-ink);
+      border-bottom: 2px solid var(--color-paper);
       padding-bottom: .15rem;
     }
 
@@ -409,28 +421,28 @@
       .prj-more { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 2rem; }
     }
     @media (min-width: 768px) {
-      .prj { padding: 0 2rem 8rem; }
+      .prj { padding: 8rem 2rem; }
       .prj-title { margin-bottom: 4rem; }
-      .prj-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3rem 1.25rem; }
-      .prj-shot { aspect-ratio: 16 / 10; }
-      .prj-name { font-size: 1.5rem; }
-      .prj-card p { font-size: 1.1rem; }
+      .prj-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+      .prj-card { aspect-ratio: 16 / 10; }
+      .prj-info { padding: 1.75rem; }
+      .prj-name { font-size: 1.6rem; }
+      .prj-info p { font-size: 1.15rem; }
       .prj-more { margin-top: 4rem; }
-      .prj-more a { font-size: 1.2rem; padding: 1.25rem 0; }
+      .prj-more a { font-size: 1.15rem; padding: .85rem 0; }
+      .prj-thumb { width: 3.5rem; height: 3.5rem; }
     }
     @media (min-width: 1024px) {
       .prj-more { grid-template-columns: repeat(3, minmax(0, 1fr)); }
     }
     @media (min-width: 1280px) {
-      .prj-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 3rem 1.25rem; }
-      .prj-shot { aspect-ratio: 4 / 3; }
       .prj-more { grid-template-columns: repeat(4, minmax(0, 1fr)); }
     }
 
     @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-      .prj-shot img { transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+      .prj-card > img.prj-cover { transition: transform .6s cubic-bezier(.2,.7,.2,1); }
       .prj-arrow { transition: opacity .25s ease, transform .25s ease; }
-      .prj-card:hover .prj-shot img { transform: scale(1.03); }
+      .prj-card:hover > img.prj-cover { transform: scale(1.03); }
       .prj-card:hover .prj-arrow, .prj-more a:hover .prj-arrow { opacity: 1; transform: translate(2px, -2px); }
     }
     @media (hover: hover) {
@@ -629,56 +641,64 @@
       <div class="prj-grid">
 
         <a class="prj-card reveal" href="https://vivasart.com/folio/prilozhenie-dlya-upravleniya-restoranom">
-          <div class="prj-shot"><img src="https://vivasart.com/uploads/images/article/restaurant.webp" alt="Управление рестораном" loading="lazy" decoding="async"></div>
-          <div class="prj-name-row">
-            <h3 class="prj-name">Управление рестораном <img src="img/es.png" alt="Испания" class="flag-inline"></h3>
-            <i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i>
+          <img class="prj-cover" src="https://vivasart.com/uploads/images/article/restaurant.webp" alt="" loading="lazy" decoding="async">
+          <div class="prj-info">
+            <div class="prj-name-row">
+              <h3 class="prj-name">Управление рестораном <img src="img/es.svg" alt="Испания" class="flag-inline"></h3>
+              <i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i>
+            </div>
+            <p>Столики, бронь, заказы и счета. Счёт делится поровну или по блюдам.</p>
           </div>
-          <p>Столики, бронь, заказы и счета. Счёт делится поровну или по блюдам.</p>
         </a>
 
         <a class="prj-card reveal" href="https://vivasart.com/folio/redizayn-nemetskogo-marketpleysa-la-ol">
-          <div class="prj-shot"><img src="https://vivasart.com/uploads/images/article/laol_cover.webp" alt="Редизайн маркетплейса LA-OL" loading="lazy" decoding="async"></div>
-          <div class="prj-name-row">
-            <h3 class="prj-name">Редизайн маркетплейса LA-OL <img src="img/de.svg" alt="Германия" class="flag-inline"></h3>
-            <i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i>
+          <img class="prj-cover" src="https://vivasart.com/uploads/images/article/laol_cover.webp" alt="" loading="lazy" decoding="async">
+          <div class="prj-info">
+            <div class="prj-name-row">
+              <h3 class="prj-name">Редизайн маркетплейса LA-OL <img src="img/de.svg" alt="Германия" class="flag-inline"></h3>
+              <i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i>
+            </div>
+            <p>Каталог по поводам для подарка и короткий путь к оплате.</p>
           </div>
-          <p>Каталог по поводам для подарка и короткий путь к оплате.</p>
         </a>
 
         <a class="prj-card reveal" href="https://vivasart.com/folio/razrabotka-sayta-nedvizhimosti">
-          <div class="prj-shot"><img src="https://vivasart.com/uploads/images/article/gg_cover.webp" alt="Сайт агентства недвижимости" loading="lazy" decoding="async"></div>
-          <div class="prj-name-row">
-            <h3 class="prj-name">Сайт агентства недвижимости <img src="img/es.png" alt="Испания" class="flag-inline"></h3>
-            <i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i>
+          <img class="prj-cover" src="https://vivasart.com/uploads/images/article/gg_cover.webp" alt="" loading="lazy" decoding="async">
+          <div class="prj-info">
+            <div class="prj-name-row">
+              <h3 class="prj-name">Сайт агентства недвижимости <img src="img/es.svg" alt="Испания" class="flag-inline"></h3>
+              <i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i>
+            </div>
+            <p>Поиск по объектам с фильтрами и кабинет для владельцев.</p>
           </div>
-          <p>Поиск по объектам с фильтрами и кабинет для владельцев.</p>
         </a>
 
         <a class="prj-card reveal" href="https://vivasart.com/folio/coachcrm-professional-coaching-management-platform">
-          <div class="prj-shot"><img src="https://vivasart.com/uploads/images/article/crm_cover.jpg" alt="CoachCRM" loading="lazy" decoding="async"></div>
-          <div class="prj-name-row">
-            <h3 class="prj-name">CoachCRM <img src="img/se.png" alt="Швеция" class="flag-inline"></h3>
-            <i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i>
+          <img class="prj-cover" src="https://vivasart.com/uploads/images/article/crm_cover.jpg" alt="" loading="lazy" decoding="async">
+          <div class="prj-info">
+            <div class="prj-name-row">
+              <h3 class="prj-name">CoachCRM <img src="img/se.svg" alt="Швеция" class="flag-inline"></h3>
+              <i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i>
+            </div>
+            <p>CRM для коучей: сессии, прогресс клиентов и прогноз результата.</p>
           </div>
-          <p>CRM для коучей: сессии, прогресс клиентов и прогноз результата.</p>
         </a>
 
       </div>
 
       <ul class="prj-more reveal">
-        <li><a href="https://vivasart.com/folio/dellenfreie-zone"><span class="prj-label">Dellenfreie zone</span><i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i></a></li>
-        <li><a href="https://vivasart.com/folio/dak-consulting-crm"><span class="prj-label">DAK Consulting CRM</span><i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i></a></li>
-        <li><a href="https://vivasart.com/folio/gg-consulting-barcelona"><span class="prj-label">GG Consulting Barcelona</span><i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i></a></li>
-        <li><a href="https://vivasart.com/folio/cascada-reformas-integrales"><span class="prj-label">Cascada Reformas Integrales</span><i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i></a></li>
-        <li><a href="https://vivasart.com/folio/spain-costas-v2"><span class="prj-label">Spain Costas V2</span><i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i></a></li>
-        <li><a href="https://vivasart.com/folio/e-commerce-plush-maison"><span class="prj-label">Plush Maison</span><i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i></a></li>
-        <li><a href="https://vivasart.com/folio/spanish-tour-guide-webdesign"><span class="prj-label">Сайт гида по северу Испании</span><i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i></a></li>
-        <li><a href="https://vivasart.com/folio/dak-consulting-group"><span class="prj-label">DAK Consulting group</span><i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i></a></li>
-        <li><a href="https://vivasart.com/folio/razrabotka-internet-magazina-yuvelirnogo-brenda"><span class="prj-label">Интернет-магазин ювелирного бренда</span><i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i></a></li>
-        <li><a href="https://vivasart.com/folio/seleniums-paris-website-design"><span class="prj-label">Seleniums Paris</span><i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i></a></li>
-        <li><a href="https://vivasart.com/folio/skvo-clothes-internet-magazin"><span class="prj-label">SKVO Clothes</span><i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i></a></li>
-        <li><a href="https://vivasart.com/folio/brending-dlya-agentstva-nedvizimosti-hello-salou"><span class="prj-label">Hello Salou — брендинг</span><i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i></a></li>
+        <li><a href="https://vivasart.com/folio/dellenfreie-zone"><img class="prj-thumb" src="https://vivasart.com/uploads/images/article/dellen_cover.jpg" alt="" loading="lazy" decoding="async"><span class="prj-label">Dellenfreie zone</span><i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i></a></li>
+        <li><a href="https://vivasart.com/folio/dak-consulting-crm"><img class="prj-thumb" src="https://vivasart.com/uploads/images/article/crm_dak_cover.jpg" alt="" loading="lazy" decoding="async"><span class="prj-label">DAK Consulting CRM</span><i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i></a></li>
+        <li><a href="https://vivasart.com/folio/gg-consulting-barcelona"><img class="prj-thumb" src="https://vivasart.com/uploads/images/article/ggconsulting_cover.jpg" alt="" loading="lazy" decoding="async"><span class="prj-label">GG Consulting Barcelona</span><i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i></a></li>
+        <li><a href="https://vivasart.com/folio/cascada-reformas-integrales"><img class="prj-thumb" src="https://vivasart.com/uploads/images/article/cacascada_cover.jpg" alt="" loading="lazy" decoding="async"><span class="prj-label">Cascada Reformas Integrales</span><i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i></a></li>
+        <li><a href="https://vivasart.com/folio/spain-costas-v2"><img class="prj-thumb" src="https://vivasart.com/uploads/images/article/spain_costas.webp" alt="" loading="lazy" decoding="async"><span class="prj-label">Spain Costas V2</span><i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i></a></li>
+        <li><a href="https://vivasart.com/folio/e-commerce-plush-maison"><img class="prj-thumb" src="https://vivasart.com/uploads/images/article/pluch_cover.webp" alt="" loading="lazy" decoding="async"><span class="prj-label">Plush Maison</span><i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i></a></li>
+        <li><a href="https://vivasart.com/folio/spanish-tour-guide-webdesign"><img class="prj-thumb" src="https://vivasart.com/uploads/images/article/galicia_cover.webp" alt="" loading="lazy" decoding="async"><span class="prj-label">Сайт гида по северу Испании</span><i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i></a></li>
+        <li><a href="https://vivasart.com/folio/dak-consulting-group"><img class="prj-thumb" src="https://vivasart.com/uploads/images/article/main_header.png" alt="" loading="lazy" decoding="async"><span class="prj-label">DAK Consulting group</span><i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i></a></li>
+        <li><a href="https://vivasart.com/folio/razrabotka-internet-magazina-yuvelirnogo-brenda"><img class="prj-thumb" src="https://vivasart.com/uploads/images/article/vellora_cover.webp" alt="" loading="lazy" decoding="async"><span class="prj-label">Интернет-магазин ювелирного бренда</span><i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i></a></li>
+        <li><a href="https://vivasart.com/folio/seleniums-paris-website-design"><img class="prj-thumb" src="https://vivasart.com/uploads/images/article/seleniums_cover.jpg" alt="" loading="lazy" decoding="async"><span class="prj-label">Seleniums Paris</span><i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i></a></li>
+        <li><a href="https://vivasart.com/folio/skvo-clothes-internet-magazin"><img class="prj-thumb" src="https://vivasart.com/uploads/images/article/iPhone-12-Mockup.jpg" alt="" loading="lazy" decoding="async"><span class="prj-label">SKVO Clothes</span><i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i></a></li>
+        <li><a href="https://vivasart.com/folio/brending-dlya-agentstva-nedvizimosti-hello-salou"><img class="prj-thumb" src="https://vivasart.com/uploads/images/article/hello_salou_tshirt.jpg" alt="" loading="lazy" decoding="async"><span class="prj-label">Hello Salou — брендинг</span><i data-lucide="arrow-up-right" class="prj-arrow" stroke-width="2" aria-hidden="true"></i></a></li>
       </ul>
 
       <a class="prj-all reveal" href="https://vivasart.com/folio">Весь архив <i data-lucide="arrow-right" class="h-5 w-5" stroke-width="2" aria-hidden="true"></i></a>
