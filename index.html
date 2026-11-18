@@ -272,14 +272,14 @@
     }
 
     /* ───────── Секция 3: Services (спокойная конкретика) ─────────
-       Заголовок-утверждение + сетка светлых карточек с большим воздухом внутри.
-       Главное направление (ERP/CRM) крупнее остальных, но не контрастнее: масштаб, а не чёрный блок. */
-    .svc { padding: clamp(4rem, 16svh, 13rem) 1.25rem clamp(4rem, 16svh, 13rem); }
+       Заголовок-утверждение + ровная сетка одинаковых светлых карточек.
+       Без clamp: размеры фиксированные, меняются только на брейкпоинтах. */
+    .svc { padding: 4rem 1.25rem; }
     .svc-wrap { max-width: 1900px; margin-inline: auto; }
 
-    .svc-head { display: grid; gap: 1.25rem; margin-bottom: clamp(2.5rem, 9svh, 7rem); }
+    .svc-head { display: grid; gap: 1rem; margin-bottom: 2.5rem; }
     .svc-title {
-      font-size: clamp(2rem, 8.5vw, 3.4rem);
+      font-size: 2.4rem;
       line-height: 1;
       font-weight: 700;
       letter-spacing: -.05em;
@@ -288,80 +288,55 @@
     }
     .svc-title span { color: #a09c99; }   /* вторая половина заголовка приглушена */
     .svc-note {
-      font-size: clamp(1.05rem, 4.2vw, 1.25rem);
+      font-size: 1.05rem;
       line-height: 1.45;
       letter-spacing: -.01em;
       color: #6b6762;
-      max-width: 26em;
+      max-width: 24em;
     }
 
     .svc-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: .75rem; }
     .svc-card {
       display: flex;
       flex-direction: column;
-      min-height: 15rem;
+      min-height: 14rem;
       padding: 1.5rem;
       border-radius: 1.4rem;
       background: #eae5e1;
     }
     .svc-card-icon { width: 2.5rem; height: 2.5rem; color: var(--color-ink); }
-    .svc-card-body { margin-top: auto; padding-top: 3rem; }
+    .svc-card-body { margin-top: auto; padding-top: 2rem; }
     .svc-card-name {
-      font-size: clamp(1.4rem, 5.6vw, 1.9rem);
+      font-size: 1.4rem;
       line-height: 1.08;
       font-weight: 600;
       letter-spacing: -.04em;
     }
     .svc-card p {
-      margin-top: .6rem;
-      font-size: clamp(1.02rem, 4vw, 1.2rem);
+      margin-top: .5rem;
+      font-size: 1.05rem;
       line-height: 1.4;
       letter-spacing: -.01em;
       color: #5f5b57;
       max-width: 22em;
     }
 
-    /* главная карточка: ERP/CRM */
-    .svc-card-main .svc-card-icon { width: 3.25rem; height: 3.25rem; }
-    .svc-card-main .svc-card-name {
-      font-size: clamp(2rem, 9vw, 3rem);
-      line-height: .98;
-      font-weight: 700;
-      letter-spacing: -.05em;
-    }
-    .svc-card-main .svc-card-lead {
-      margin-top: 1rem;
-      font-size: clamp(1.2rem, 4.8vw, 1.6rem);
-      line-height: 1.18;
-      letter-spacing: -.03em;
-      font-weight: 500;
-      color: var(--color-ink);
-      max-width: 22em;
-    }
-    .svc-card-main p:not(.svc-card-lead) { max-width: 30em; }
-
     @media (min-width: 768px) {
-      .svc { padding-inline: 2rem; }
-      .svc-head { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 2rem; align-items: start; }
-      .svc-title { grid-column: 1 / 9; font-size: clamp(2.5rem, 4.6vw, 5.5rem); }
-      .svc-note  { grid-column: 10 / -1; padding-top: .6rem; font-size: clamp(1.05rem, 1.2vw, 1.35rem); }
+      .svc { padding: 8rem 2rem; }
+      .svc-head { grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 2rem; align-items: start; margin-bottom: 4rem; }
+      .svc-title { grid-column: 1 / 9; }
+      .svc-note  { grid-column: 10 / -1; padding-top: .35rem; font-size: 1.15rem; }
 
       .svc-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
-      .svc-card { min-height: 22rem; padding: 2rem; }
-      .svc-card-main { grid-column: 1 / -1; min-height: 26rem; }
-      .svc-card-name { font-size: clamp(1.5rem, 2vw, 2.2rem); }
-      .svc-card p { font-size: clamp(1.05rem, 1.2vw, 1.35rem); }
+      .svc-card { min-height: 16rem; padding: 1.75rem; }
+      .svc-card-name { font-size: 1.6rem; }
+      .svc-card p { font-size: 1.1rem; }
     }
 
-    /* ≥ 1024px: ERP — 2×2, остальное три в ряд и два справа */
     @media (min-width: 1024px) {
-      .svc-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
-      .svc-card { min-height: 26rem; padding: clamp(2rem, 2.6vw, 3rem); }
-      .svc-card-icon { width: 2.75rem; height: 2.75rem; }
-      .svc-card-main { grid-column: 1 / 3; grid-row: 1 / 3; min-height: 0; }
-      .svc-card-main .svc-card-icon { width: 3.75rem; height: 3.75rem; }
-      .svc-card-main .svc-card-name { font-size: clamp(2.75rem, 4.2vw, 5rem); }
-      .svc-card-main .svc-card-lead { font-size: clamp(1.5rem, 2vw, 2.3rem); }
+      .svc-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+      .svc-card { min-height: 17rem; }
+      .svc-card-name { font-size: 1.75rem; }
     }
   </style>
 </head>
@@ -489,18 +464,17 @@
     <div class="svc-wrap">
 
       <div class="svc-head reveal">
-        <h2 id="svc-title" class="svc-title">Делаю то, на чём держится бизнес онлайн <span>— чтобы работало, а не просто выглядело.</span></h2>
-        <p class="svc-note">Главное для меня — ERP и CRM на заказ. Всё остальное рядом, когда оно вам нужно.</p>
+        <h2 id="svc-title" class="svc-title">Делаю то, на чём держится онлайн бизнес <span>— чтобы работало, а не просто выглядело</span></h2>
+        <p class="svc-note">Мне важно решить задачу бизнеса и превзойти ожидания. Инструмент подберём под неё.</p>
       </div>
 
       <div class="svc-grid">
 
-        <article class="svc-card svc-card-main reveal">
+        <article class="svc-card reveal">
           <i data-lucide="workflow" class="svc-card-icon" stroke-width="1.5" aria-hidden="true"></i>
           <div class="svc-card-body">
             <h3 class="svc-card-name">ERP и CRM на заказ</h3>
-            <p class="svc-card-lead">Заявки в Excel, клиенты в мессенджерах, склад в голове у менеджера? Соберу одну систему, где всё это живёт вместе.</p>
-            <p>Клиенты и сделки, заказы, склад и закупки, документы, права сотрудников и отчёты, которые не нужно выпрашивать у бухгалтера. Начинаем с самого больного процесса и растём дальше, а не ждём год до первого запуска.</p>
+            <p>Заявки в Excel, клиенты в мессенджерах, склад в голове у менеджера? Соберу одну систему, где всё это живёт вместе.</p>
           </div>
         </article>
 
