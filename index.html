@@ -164,6 +164,107 @@
     @media (prefers-reduced-motion: no-preference) {
       .fire { animation: float 7s ease-in-out infinite; }
       @keyframes float { 50% { transform: translateY(-1.2%); } }
+      html { scroll-behavior: smooth; }
+    }
+
+    /* ───────── Секция 2: About («полухлопок») ─────────
+       Тише первого экрана: без стекла и пилюль, только бумага, масштаб и текст.
+       Те же 12 колонок и тот же ритм типографики, что в hero-copy. */
+    .about {
+      padding: clamp(4rem, 14svh, 10rem) 1.25rem;
+    }
+    .about-wrap {
+      max-width: 1900px;
+      margin-inline: auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      row-gap: 2rem;
+    }
+    .about-head  { order: 1; }
+    .about-photo { order: 2; }
+    .about-body  { order: 3; }
+
+    .about-hi {
+      font-size: clamp(3rem, 15vw, 5.5rem);
+      line-height: .85;
+      font-weight: 700;
+      letter-spacing: -.055em;
+      margin-left: -.04em;
+    }
+    .about-name {
+      margin-top: .9rem;
+      font-size: 1rem;
+      color: #989898;           /* тот же серый, что у hero-eyebrow */
+    }
+
+    .about-photo {
+      margin: 0;
+      aspect-ratio: 4 / 5;
+      overflow: hidden;
+      border-radius: 1.4rem;    /* тот же радиус, что у soft-card */
+      background: #e4dfdb;      /* пока грузится фото */
+    }
+    .about-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: 50% 20%;
+      display: block;
+    }
+
+    .about-lead {
+      font-size: clamp(1.5rem, 6.2vw, 2.1rem);
+      line-height: 1.08;
+      letter-spacing: -.04em;
+      font-weight: 600;
+      text-wrap: balance;
+    }
+    .about-body p + p { margin-top: 1.4rem; }
+    .about-body p:not(.about-lead) {
+      font-size: clamp(1.1rem, 4.4vw, 1.3rem);
+      line-height: 1.38;
+      letter-spacing: -.015em;
+      color: #3f3f46;
+      max-width: 30em;
+    }
+    .about-body strong { color: var(--color-ink); font-weight: 600; }
+
+    /* маленькие флаги прямо в строке — как на старом сайте, но без фона и теней */
+    .flag-inline {
+      display: inline-block;
+      width: .95em; height: .95em;
+      vertical-align: -.12em;
+      margin-inline: .12em;
+      border-radius: 999px;
+      object-fit: cover;
+    }
+
+    @media (min-width: 768px) {
+      .about { padding-inline: 2rem; }
+      .about-wrap {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        grid-template-rows: auto 1fr;
+        column-gap: 2rem;
+        row-gap: 0;
+      }
+      .about-photo { order: 0; grid-column: 1 / 6; grid-row: 1 / 3; }
+      .about-head  { order: 0; grid-column: 7 / -1; grid-row: 1; align-self: end; padding-bottom: 2.5rem; }
+      .about-body  { order: 0; grid-column: 7 / -1; grid-row: 2; align-self: start; }
+
+      .about-hi   { font-size: clamp(4rem, 8vw, 9rem); }
+      .about-name { font-size: 1.15rem; margin-top: 1.1rem; }
+      .about-lead { font-size: clamp(1.7rem, 2.6vw, 3rem); max-width: 19em; letter-spacing: -.04em; }
+      .about-body p:not(.about-lead) { font-size: clamp(1.1rem, 1.35vw, 1.5rem); }
+    }
+
+    /* появление при скролле: только если нет prefers-reduced-motion и работает JS */
+    @media (prefers-reduced-motion: no-preference) {
+      .js .reveal {
+        opacity: 0;
+        transform: translateY(1.5rem);
+        transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1);
+      }
+      .js .reveal.is-in { opacity: 1; transform: none; }
+      .js .about-body.reveal { transition-delay: .12s; }
     }
   </style>
 </head>
@@ -247,15 +348,55 @@
           <span class="tag-pill">UX strategy</span>
         </div>
 
-        <div class="scroll items-center gap-3 text-base font-semibold">
+        <a href="#about" class="scroll items-center gap-3 text-base font-semibold">
           Scroll for more
           <i data-lucide="arrow-down" class="h-5 w-5" stroke-width="2"></i>
-        </div>
+        </a>
 
       </section>
     </div>
   </main>
 
-  <script>lucide.createIcons();</script>
+  <!-- About -->
+  <section id="about" class="about" aria-labelledby="about-title">
+    <div class="about-wrap">
+
+      <div class="about-head reveal">
+        <h2 id="about-title" class="about-hi">Привет!</h2>
+        <p class="about-name">Меня зовут Марк</p>
+      </div>
+
+      <figure class="about-photo reveal">
+        <!-- временное фото со старого сайта; заменить на новое -->
+        <img src="https://vivasart.com/img/mark_vi.jpg" alt="Марк Ви" loading="lazy" decoding="async">
+      </figure>
+
+      <div class="about-body reveal">
+        <p class="about-lead">Вот уже больше 20 лет я создаю классные сайты и корпоративный стиль.</p>
+        <p>
+          Живу в красивейшем городе мира — Барселоне <img src="img/es.png" alt="Испания" class="flag-inline">,
+          а лето провожу в прохладном Сконе <img src="img/se.png" alt="Швеция" class="flag-inline">,
+          работаю с клиентами по всему миру.
+        </p>
+        <p>
+          У меня огромный опыт в программировании и графическом дизайне, а также есть целая команда
+          крутых Digital специалистов из <strong>Zaltsman Media</strong>, готовых вывести ваш бизнес на новые высоты.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    lucide.createIcons();
+
+    // Появление блоков при скролле. Класс .js включает скрытое начальное состояние
+    // только когда скрипт реально работает, иначе контент остаётся видимым.
+    document.documentElement.classList.add('js');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+    }, { threshold: .15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  </script>
 </body>
 </html>
